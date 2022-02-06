@@ -8,10 +8,11 @@ import com.state.BrushTool;
 import com.state.Canvas;
 import com.state.EraserTool;
 import com.state.SelectionTool;
+import com.strategy.*;
 
 public class Main {
     public static void main(String[] args) {
-        iteratorPattern();
+        flexibleStrategyPattern();
     }
 
     public static void momentoPattern(){
@@ -64,5 +65,16 @@ public class Main {
             System.out.println(iterator.current());
             iterator.next();
         }
+    }
+
+    public static void nonFlexibleStrategyPattern(){
+        var nonFlexibleImageStorage = new nonFlexibleImageStorage(new JpegCompressor(), new BlackAndWhiteFilter());
+        nonFlexibleImageStorage.store("imageLocation");
+    }
+
+    public static void flexibleStrategyPattern(){
+        var flexibleImageStorage = new FlexibleImageStorage();
+        flexibleImageStorage.store("imageLocation", new PngCompressor(), new BlackAndWhiteFilter());
+        flexibleImageStorage.store("imageLocation", new JpegCompressor(), new BlackAndWhiteFilter());
     }
 }
