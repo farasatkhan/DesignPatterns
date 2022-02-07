@@ -11,10 +11,13 @@ import com.state.SelectionTool;
 import com.strategy.*;
 import com.template.AuditTrail;
 import com.template.TransferMoneyTask;
+import command.AddCustomerCommand;
+import command.CustomerService;
+import command.fx.Button;
 
 public class Main {
     public static void main(String[] args) {
-        templatePattern();
+        commandPattern();
     }
 
     public static void momentoPattern(){
@@ -80,9 +83,15 @@ public class Main {
         flexibleImageStorage.store("imageLocation", new JpegCompressor(), new BlackAndWhiteFilter());
     }
 
-
     public static void templatePattern(){
         var task = new TransferMoneyTask(new AuditTrail());
         task.execute();
+    }
+
+    public static void commandPattern(){
+        var service = new CustomerService();
+        var command = new AddCustomerCommand(service);
+        var button = new Button(command);
+        button.click();
     }
 }
