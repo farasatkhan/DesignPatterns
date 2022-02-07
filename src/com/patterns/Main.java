@@ -9,10 +9,12 @@ import com.state.Canvas;
 import com.state.EraserTool;
 import com.state.SelectionTool;
 import com.strategy.*;
+import com.template.AuditTrail;
+import com.template.TransferMoneyTask;
 
 public class Main {
     public static void main(String[] args) {
-        flexibleStrategyPattern();
+        templatePattern();
     }
 
     public static void momentoPattern(){
@@ -76,5 +78,11 @@ public class Main {
         var flexibleImageStorage = new FlexibleImageStorage();
         flexibleImageStorage.store("imageLocation", new PngCompressor(), new BlackAndWhiteFilter());
         flexibleImageStorage.store("imageLocation", new JpegCompressor(), new BlackAndWhiteFilter());
+    }
+
+
+    public static void templatePattern(){
+        var task = new TransferMoneyTask(new AuditTrail());
+        task.execute();
     }
 }
