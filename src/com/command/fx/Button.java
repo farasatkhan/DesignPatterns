@@ -1,4 +1,4 @@
-package command.fx;
+package com.command.fx;
 
 public class Button {
     private String label;

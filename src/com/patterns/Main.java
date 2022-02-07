@@ -11,9 +11,9 @@ import com.state.SelectionTool;
 import com.strategy.*;
 import com.template.AuditTrail;
 import com.template.TransferMoneyTask;
-import command.AddCustomerCommand;
-import command.CustomerService;
-import command.fx.Button;
+import com.command.AddCustomerCommand;
+import com.command.CustomerService;
+import com.command.fx.Button;
 
 public class Main {
     public static void main(String[] args) {

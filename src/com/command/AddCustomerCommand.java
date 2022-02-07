@@ -1,6 +1,6 @@
-package command;
+package com.command;
 
-import command.fx.Command;
+import com.command.fx.Command;
 
 public class AddCustomerCommand implements Command {
     private CustomerService service;
