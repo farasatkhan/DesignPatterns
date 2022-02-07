@@ -1,5 +1,10 @@
 package com.patterns;
 
+import com.command.*;
+import com.command.editor.BoldCommand;
+import com.command.editor.HTMLDocument;
+import com.command.editor.UndoCommand;
+import com.command.editor.UndoableCommand;
 import com.iterator.BrowseHistory;
 import com.iterator.Iterator;
 import com.memento.Editor;
@@ -11,13 +16,11 @@ import com.state.SelectionTool;
 import com.strategy.*;
 import com.template.AuditTrail;
 import com.template.TransferMoneyTask;
-import com.command.AddCustomerCommand;
-import com.command.CustomerService;
 import com.command.fx.Button;
 
 public class Main {
     public static void main(String[] args) {
-        commandPattern();
+        editorCommandPattern();
     }
 
     public static void momentoPattern(){
@@ -93,5 +96,26 @@ public class Main {
         var command = new AddCustomerCommand(service);
         var button = new Button(command);
         button.click();
+    }
+
+    public static void compositeCommandPattern(){
+        var compositeCommand = new CompositeCommand();
+        compositeCommand.add(new ResizeCommand());
+        compositeCommand.add(new BlackAndWhiteCommand());
+        compositeCommand.execute();
+    }
+
+    public static void editorCommandPattern(){
+        var history = new com.command.editor.History();
+        var document = new HTMLDocument();
+        document.setContent("Hello World");
+
+        var boldCommand = new BoldCommand(document, history);
+        boldCommand.execute();
+        System.out.println(document.getContent());
+
+        var undoCommand = new UndoCommand(history);
+        undoCommand.execute();
+        System.out.println(document.getContent());
     }
 }
